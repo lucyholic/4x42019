@@ -14,8 +14,20 @@ class CreateKidsTable extends Migration
     public function up()
     {
         Schema::create('kids', function (Blueprint $table) {
-            $table->bigIncrements('id');
+            $table->engine = 'InnoDB';
+            $table->increments('id');
+            $table->unsignedInteger('user_id')->index();
+            $table->string('firstName');
+            $table->string('lastName');
+            $table->string('school');
+            $table->date('DOB');
             $table->timestamps();
+
+        $table->foreign('user_id')
+            ->references('id')
+            ->on('users')
+            ->onDelete('cascade');
+
         });
     }
 

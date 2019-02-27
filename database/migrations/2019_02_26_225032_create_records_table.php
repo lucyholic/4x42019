@@ -14,9 +14,25 @@ class CreateRecordsTable extends Migration
     public function up()
     {
         Schema::create('records', function (Blueprint $table) {
-            $table->bigIncrements('id');
+            $table->engine = 'InnoDB';
+            $table->increments('id');
+            $table->unsignedInteger('book_id')->index();
+            $table->unsignedInteger('user_id')->index();
+            $table->date('checkout_date');
+            $table->date('return_date')->nullable();
             $table->timestamps();
+
+            $table->foreign('book_id')
+                ->references('id')
+                ->on('books');
+
+            $table->foreign('user_id')
+                ->references('id')
+                ->on('users')
+                ->onDelete('cascade');
         });
+
+        
     }
 
     /**
