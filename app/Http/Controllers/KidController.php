@@ -3,12 +3,12 @@
 namespace App\Http\Controllers;
 
 use App\Kid;
+use App\Http\Requests\KidRequest;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 
 class KidController extends Controller
 {
-
     public function __construct()
     {
         $this->middleware('auth');
@@ -41,30 +41,15 @@ class KidController extends Controller
     /**
      * Store a newly created resource in storage.
      *
-     * @param  \Illuminate\Http\Request  $request
+     * @param  KidRequest  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(Request $request)
+    public function store(KidRequest $request)
     {
-        $user_id = Auth::id();
-        $validateData = $request->validate([
-            'firstName' => ['required'],
-            'lastName' => ['required'],
-            'school' => ['required'],
-            'DOB' => ['required', 'date', 'before:today']
-        ]);
+        $user = $request->user();
+        $kid = $user->kids()->create($request->all());
 
-        //$kid = $user->kids()->create($validateData->all());
-
-        $kid = Kid::create([    
-            'user_id' => $user_id,
-            'firstName' => $validateData['firstName'],
-            'lastName' => $validateData['lastName'],
-            'school' => $validateData['school'],
-            'DOB' => $validateData['DOB']
-        ]);
-
-        flash('A kid added!', 'success');
+        // flash('A kid added!', 'success');
 
         return redirect(route('kids.show', $kid->id));
     }
@@ -89,19 +74,20 @@ class KidController extends Controller
      */
     public function edit(Kid $kid)
     {
-        //
+        return view('kids.edit', ['kid' => $kid]);
     }
 
     /**
      * Update the specified resource in storage.
      *
-     * @param  \Illuminate\Http\Request  $request
+     * @param  KidRequest  $request
      * @param  \App\Kid  $kid
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, Kid $kid)
+    public function update(KidRequest $request, Kid $kid)
     {
-        //
+        $kid->update($request->all());
+        return redirect(route('kids.show', $kid->id));
     }
 
     /**

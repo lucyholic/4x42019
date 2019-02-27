@@ -8,6 +8,7 @@ class Record extends Model
 {
     protected $fillable = [
         'book_id',
+        'user_id',
         'checkout_date',
         'return_date'
     ];

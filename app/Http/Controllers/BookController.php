@@ -3,6 +3,8 @@
 namespace App\Http\Controllers;
 
 use App\Book;
+use App\User;
+use App\Http\Requests\BookRequest;
 use Illuminate\Http\Request;
 
 class BookController extends Controller
@@ -14,7 +16,8 @@ class BookController extends Controller
      */
     public function index()
     {
-        //
+        $books = Book::paginate(5);
+        return view('books.index', ['books' => $books]);
     }
 
     /**
@@ -24,18 +27,24 @@ class BookController extends Controller
      */
     public function create()
     {
-        //
+        $book = new Book;
+        return view('books.create', ['book' => $book]);
     }
 
     /**
      * Store a newly created resource in storage.
      *
-     * @param  \Illuminate\Http\Request  $request
+     * @param  BookRequest  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(Request $request)
+    public function store(BookRequest $request)
     {
-        //
+        $user = $request->user();
+        $book = $user->books()->create($request->all());
+
+        // flash('A book added!', 'success');
+
+        return redirect((route('books.show', $book->id)));
     }
 
     /**
@@ -46,7 +55,9 @@ class BookController extends Controller
      */
     public function show(Book $book)
     {
-        //
+        $book->load('user');
+        $user = User::where('id', $book->user_id)->first();
+        return view('books.show', ['book' => $book, 'user' => $user]);
     }
 
     /**
@@ -57,19 +68,20 @@ class BookController extends Controller
      */
     public function edit(Book $book)
     {
-        //
+        return view('books.edit', ['book' => $book]);
     }
 
     /**
      * Update the specified resource in storage.
      *
-     * @param  \Illuminate\Http\Request  $request
+     * @param  BookRequest  $request
      * @param  \App\Book  $book
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, Book $book)
+    public function update(BookRequest $request, Book $book)
     {
-        //
+        $book->update($request->all());
+        return redirect(route('books.show', $book->id));
     }
 
     /**
@@ -80,6 +92,7 @@ class BookController extends Controller
      */
     public function destroy(Book $book)
     {
-        //
+        $book->delete();
+        return redirect(route('books.index'));
     }
 }

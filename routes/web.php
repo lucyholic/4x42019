@@ -20,3 +20,9 @@ Auth::routes();
 Route::get('/home', 'HomeController@index')->name('home');
 Route::resource('books', 'BookController');
 Route::resource('kids', 'KidController');
+Route::resource('goals', 'GoalController')->except([
+    'index'
+]);
+Route::resource('records', 'RecordController')->except([
+    'index', 'destroy'
+]);

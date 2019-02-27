@@ -7,14 +7,21 @@ use Illuminate\Database\Eloquent\Model;
 class Kid extends Model
 {
     protected $fillable = [
-        'user_id',
         'firstName',
         'lastName',
         'DOB',
         'school'
     ];
 
-    public function age() {
+    public function age($dob) {
+        // $now = date('Y-m-d');
+        
+        // $difference = $now - $dob;
+        
+        // $age = $difference->y;
+        
+        // return $age;
+
         return 11;
     }
 

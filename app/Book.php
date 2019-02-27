@@ -10,7 +10,7 @@ class Book extends Model
         'title',
         'author',
         'ISBN',
-        'recommended_age'
+        'recommended_age',
     ];
 
     public function user() {
