@@ -4,9 +4,16 @@ namespace App\Http\Controllers;
 
 use App\Kid;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
 
 class KidController extends Controller
 {
+
+    public function __construct()
+    {
+        $this->middleware('auth');
+    }
+
     /**
      * Display a listing of the resource.
      *
@@ -14,7 +21,10 @@ class KidController extends Controller
      */
     public function index()
     {
-        //
+        $user_id = Auth::id();
+        $kids = Kid::where('user_id', $user_id)
+            ->get();
+        return view('kids.index', ['kids' => $kids]);
     }
 
     /**
@@ -24,7 +34,8 @@ class KidController extends Controller
      */
     public function create()
     {
-        //
+        $kid = new Kid;
+        return view('kids.create', ['kid' => $kid]);
     }
 
     /**
@@ -35,7 +46,27 @@ class KidController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $user_id = Auth::id();
+        $validateData = $request->validate([
+            'firstName' => ['required'],
+            'lastName' => ['required'],
+            'school' => ['required'],
+            'DOB' => ['required', 'date', 'before:today']
+        ]);
+
+        //$kid = $user->kids()->create($validateData->all());
+
+        $kid = Kid::create([    
+            'user_id' => $user_id,
+            'firstName' => $validateData['firstName'],
+            'lastName' => $validateData['lastName'],
+            'school' => $validateData['school'],
+            'DOB' => $validateData['DOB']
+        ]);
+
+        flash('A kid added!', 'success');
+
+        return redirect(route('kids.show', $kid->id));
     }
 
     /**
@@ -46,7 +77,8 @@ class KidController extends Controller
      */
     public function show(Kid $kid)
     {
-        //
+        $kid->load('user', 'goals');
+        return view('kids.show', ['kid' => $kid]);
     }
 
     /**
