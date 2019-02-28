@@ -12,13 +12,13 @@
 */
 
 Route::get('/', function () {
-    return view('welcome');
+    return view('home');
 });
 
 Auth::routes();
 
 Route::get('/home', 'HomeController@index')->name('home');
-Route::resource('users', 'UserController')->only([ 'show','edit', 'update']);
+Route::resource('users', 'UserController')->only([ 'show', 'edit', 'update' ]);
 Route::resource('books', 'BookController');
 Route::resource('kids', 'KidController');
 Route::resource('goals', 'GoalController');

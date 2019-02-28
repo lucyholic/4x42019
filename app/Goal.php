@@ -8,6 +8,7 @@ class Goal extends Model
 {
     protected $fillable = [
         'kid_id',
+        'title',
         'description',
         'start_date',
         'end_date',

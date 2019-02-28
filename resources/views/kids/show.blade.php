@@ -9,5 +9,6 @@
       School: {{ $kid->school }}
     </div>
     <a href="{{ route('kids.edit', $kid->id)}}" class="btn btn-primary">Edit</a>
+    <a href="{{ route('goals.create') }}" class="btn btn-light">Add a goal</a>
   </div>
 @endsection

@@ -3,9 +3,9 @@
 namespace App\Http\Controllers;
 
 use App\Book;
-use App\User;
 use App\Http\Requests\BookRequest;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
 
 class BookController extends Controller
 {
@@ -16,10 +16,20 @@ class BookController extends Controller
      */
     public function index()
     {
+        // all books
         $books = Book::paginate(5);
-        // return multiple lists of books
-        // mybooks, borrowing books, lentout books
-        return view('books.index', ['books' => $books]);
+
+        // borrowing books
+        
+        // lent out books
+
+        // my books
+        $mybooks = Book::where('user_id', Auth::id());
+
+        return view('books.index', [
+                'books' => $books,
+                'mybooks' => $mybooks,
+            ]);
     }
 
     /**
@@ -46,7 +56,7 @@ class BookController extends Controller
 
         // flash('A book added!', 'success');
 
-        return redirect((route('books.show', $book->id)));
+        return redirect(route('books.show', $book->id));
     }
 
     /**
@@ -58,7 +68,7 @@ class BookController extends Controller
     public function show(Book $book)
     {
         $book->load('user');
-        $user = User::where('id', $book->user_id)->first();
+        $user = $book->user();
         return view('books.show', ['book' => $book, 'user' => $user]);
     }
 

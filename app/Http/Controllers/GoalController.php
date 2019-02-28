@@ -3,7 +3,10 @@
 namespace App\Http\Controllers;
 
 use App\Goal;
+use App\Kid;
+use App\Http\Requests\GoalRequest;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
 
 class GoalController extends Controller
 {
@@ -24,18 +27,22 @@ class GoalController extends Controller
      */
     public function create()
     {
-        //
+        $kids = Kid::where('user_id', Auth::id())->get();
+        $goal = new Goal;
+        return view('goals.create', ['goal' => $goal, 'kids' => $kids]);
     }
 
     /**
      * Store a newly created resource in storage.
      *
-     * @param  \Illuminate\Http\Request  $request
+     * @param  GoalRequest  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(Request $request)
-    {
-        //
+    public function store(GoalRequest $request)
+    {  
+        $goal = Goal::create($request->all());
+
+        return redirect(route('goals.show', $goal->id));
     }
 
     /**
@@ -46,7 +53,10 @@ class GoalController extends Controller
      */
     public function show(Goal $goal)
     {
-        //
+        $goal->load('kid');
+        $kid = Kid::where('id', $goal->kid_id)->first();
+        return view('goals.show', ['goal' => $goal,
+            'kid' => $kid]);
     }
 
     /**
@@ -57,19 +67,20 @@ class GoalController extends Controller
      */
     public function edit(Goal $goal)
     {
-        //
+        return view('goals.edit', ['goal' => $goal]);
     }
 
     /**
      * Update the specified resource in storage.
      *
-     * @param  \Illuminate\Http\Request  $request
+     * @param  GoalRequest  $request
      * @param  \App\Goal  $goal
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, Goal $goal)
+    public function update(GoalRequest $request, Goal $goal)
     {
-        //
+        $goal->update($request->all());
+        return redirect(route('goals.show', $goal->id));
     }
 
     /**

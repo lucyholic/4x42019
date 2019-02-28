@@ -1,119 +1,76 @@
-@extends('layouts.app')
+<!doctype html>
+<html lang="{{ str_replace('_', '-', app()->getLocale()) }}">
+    <head>
+        <meta charset="utf-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <meta http-equiv="X-UA-Compatible" content="ie=edge">
 
-@push('styles')
-    <link href="{{ asset('css/home.css') }}" rel="stylesheet">
-@endpush
+        <title>{{ config('app.name') }}</title>
 
-@section('content')
-<div class="container">
-    <div class="container">
-        <!-- Add book section -->
-        <div class="add-book">
-            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 50 50" width="100px" height="100px" class="add-book-icon">
-                <path style="line-height:normal;text-indent:0;text-align:start;text-decoration-line:none;text-decoration-style:solid;text-decoration-color:#000;text-transform:none;block-progression:tb;isolation:auto;mix-blend-mode:normal"
-                    d="M 25 2 C 12.309295 2 2 12.309295 2 25 C 2 37.690705 12.309295 48 25 48 C 37.690705 48 48 37.690705 48 25 C 48 12.309295 37.690705 2 25 2 z M 25 4 C 36.609824 4 46 13.390176 46 25 C 46 36.609824 36.609824 46 25 46 C 13.390176 46 4 36.609824 4 25 C 4 13.390176 13.390176 4 25 4 z M 24 13 L 24 24 L 13 24 L 13 26 L 24 26 L 24 37 L 26 37 L 26 26 L 37 26 L 37 24 L 26 24 L 26 13 L 24 13 z"
-                    font-weight="400" font-family="sans-serif" white-space="normal" overflow="visible" />
-            </svg>
-            <h3>Add a book to your library</h3>
+        <!-- Scripts -->
+        <script src="{{ asset('js/app.js') }}" defer></script>
+
+        <!-- Fonts -->
+        <link href="https://fonts.googleapis.com/css?family=Nunito:200,600" rel="stylesheet">
+        <link href="https://fonts.googleapis.com/css?family=Montserrat" rel="stylesheet">
+
+        <!-- Styles -->
+        <link href="{{ asset('css/app.css') }}" rel="stylesheet">
+        <link href="{{ asset('css/styles.css') }}" rel="stylesheet">
+    </head>
+    <body>
+        <nav class="navbar navbar-expand-md navbar-light navbar-laravel">
+        <div class="collapse navbar-collapse">
+            @include('layouts.rightnavbar')
         </div>
-        <!-- END of Add book section -->
-    
-        <!-- Accordian for book management -->
-        <div id="accordion">
-            <!-- Borrowed books -->
-            <div class="card">
-                <div class="card-header" id="borrowed-books-heading">
-                    <h5 class="mb-0">
-                        <button class="btn btn-link" data-toggle="collapse" data-target="#borrowed-books"
-                            aria-expanded="true" aria-controls="borrowed-books">
-                            Books I am borrowing
-                        </button>
-                    </h5>
-                </div>
+        </nav>
 
-                <div id="borrowed-books" class="collapse show" aria-labelledby="borrowed-books-heading" data-parent="#accordion">
-                    <div class="card-body">
-                        <div class="book-collection">
-                            <div class="borrowed-books-collection">
-                                <div class="card text-center" style="width: 13rem;">
-                                    <img class="card-img-top img-fluid" src="../images/charlottesweb.jpg" width="50"
-                                        height="175" alt="Card image cap">
-                                    <div class="card-body">
-                                        <h5 class="card-title">Book Title</h5>
-                                        <p class="card-text">Author</p>
-                                        <a href="#" class="btn">View Details</a>
-                                    </div>
-                                    <div class="card-footer text-muted">
-                                        Checkout date
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
+        <div class='container'>
+            <div class="container-fluid" style="background-color: rgb(37, 229, 243)">
+                <div class="welcome-container">
+                <div class="text-center">
+                    <h1 class="welcome-title">Better Book Share</h1>
+                    <img src="{{ asset('images/welcomepage-photo.png') }}" alt="Cartoon girl reading a book" width="35%" height="35%">
+                    <div class="photo-creds">
+                    <a href="http://www.freepik.com">Photo designed by iconicbestiary / Freepik</a>
+                    </div>
+                    <div class="welcome-text">
+                    Better Book Share is inspired by the local little libraries that families are taking part of.
                     </div>
                 </div>
-            </div>
+                </div>
+            </div>  
 
-            <!-- Lent out books-->
-            <div class="card">
-                <div class="card-header" id="lent-books-heading">
-                    <h5 class="mb-0">
-                        <button class="btn btn-link" data-toggle="collapse" data-target="#lent-out-books"
-                            aria-expanded="true" aria-controls="lent-out-books">
-                            My lent out books
-                        </button>
-                    </h5>
-                </div>
-                <div id="lent-out-books" class="collapse show" aria-labelledby="lent-out-books-heading" data-parent="#accordion">
-                    <div class="card-body">
-                        <div class="lent-out-books book-collection">
-                            <div class="lent-out-books">
-                                <div class="card text-center" style="width: 13rem;">
-                                    <img class="card-img-top img-fluid" src="../images/charlottesweb.jpg" width="100"
-                                        height="350" alt="Card image cap">
-                                    <div class="card-body">
-                                        <h5 class="card-title">Book Title</h5>
-                                        <p class="card-text">Author</p>
-                                        <a href="#" class="btn">View Details</a>
-                                    </div>
-                                    <div class="card-footer text-muted">
-                                        Lent out to: <span><a href="">Name</a></span>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
+            <div class="container-fluid" style="background-color: white">
+                <div class="row about-section">
 
-            <!-- Users Library -->
-            <div class="card">
-                <div class="card-header" id="user-library-heading">
-                    <h5 class="mb-0">
-                        <button class="btn btn-link" data-toggle="collapse" data-target="#user-library"
-                            aria-expanded="true" aria-controls="user-library">
-                            My library
-                        </button>
-                    </h5>
-                </div>
-                <div id="user-library" class="collapse show" aria-labelledby="lent-out-books-heading" data-parent="#accordion">
-                    <div class="card-body">
-                        <div class="user-library">
-                            <div class="user-library-collection">
-                                <div class="card text-center" style="width: 13rem;">
-                                    <img class="card-img-top img-fluid" src="../images/charlottesweb.jpg" width="100"
-                                        height="350" alt="Card image cap">
-                                    <div class="card-body">
-                                        <h5 class="card-title">Book Title</h5>
-                                        <p class="card-text">Author</p>
-                                        <a href="#" class="btn">View Details</a>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
+                <section class="col-12 col-md-4 about-card">
+                    <img src="{{ asset('images/about-img1.jpg') }}" class="img-fluid" width="50%" height="55%">
+                    <h4 class="about-card-title">Literacy</h4>
+                    <div class="card-info">
+                    Lorem ipsum, dolor sit amet consectetur adipisicing elit. Maxime consequuntur quasi numquam eos quaerat, praesentium consequatur cumque enim aliquam debitis sed non! Nostrum illum officiis obcaecati quaerat aperiam praesentium distinctio molestiae quibusdam, fuga excepturi beatae quam ut alias, est necessitatibus?
                     </div>
+                </section>
+
+                <section class="col-12 col-md-4 about-card">
+                    <img src="./images/about-img2.jpg" class="img-fluid" width="50%" height="50%">
+                    <h4 class="about-card-title">Community</h4>
+                    <div class="card-info">
+                    Lorem ipsum dolor sit, amet consectetur adipisicing elit. Animi repellendus fugiat repudiandae consectetur incidunt voluptate, sed blanditiis id, officia architecto, natus dolorum nesciunt quae quod commodi doloremque eaque veritatis quam. Quas quae quod quaerat vitae distinctio tempore, quisquam numquam. Provident.
+                    </div>
+                </section>
+
+                <section class="col-12 col-md-4 about-card">
+                    <img src="#">
+                    <h4 class="about-card-title">Goals</h4>
+                    <div class="card-info">
+                    Lorem ipsum dolor sit, amet consectetur adipisicing elit. Quae fugit neque aliquam veniam nemo fugiat suscipit ipsam, tempore doloremque? Aliquid ipsa iste perspiciatis veniam odio delectus hic nostrum, eveniet amet eum laudantium exercitationem placeat atque necessitatibus a nihil blanditiis quisquam.
+                    </div>
+                </section>
+
                 </div>
             </div>
         </div>
-    </div>
-</div>
-@endsection
+
+    </body>
+</html>

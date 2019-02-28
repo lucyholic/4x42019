@@ -13,8 +13,9 @@
       {{-- else, show home/firstname --}}
   @else
       <li class="nav-item">
-      <a class="nav-link" href="{{ route('home') }}">{{ __('Home') }}</a>
+      <a class="nav-link" href="{{ route('books.index') }}">{{ __('Home') }}</a>
       </li>
+
       <li class="nav-item dropdown">
         {{-- Display user name --}}
         <a id="navbarDropdown" class="nav-link dropdown-toggle" href="#" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" v-pre>
