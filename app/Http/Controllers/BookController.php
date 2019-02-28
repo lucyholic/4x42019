@@ -17,6 +17,8 @@ class BookController extends Controller
     public function index()
     {
         $books = Book::paginate(5);
+        // return multiple lists of books
+        // mybooks, borrowing books, lentout books
         return view('books.index', ['books' => $books]);
     }
 
