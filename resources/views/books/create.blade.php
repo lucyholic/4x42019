@@ -1,17 +1,34 @@
 {{-- view/books/create.blade.php --}}
 
 @extends('layouts.app')
-@section('content')
-  <div class="container">
-    <h2>Add a book</h2>
 
+@push('styles')
+  <link href="{{ asset('css/home.css') }}" rel="stylesheet">
+  <link href="{{ asset('css/createbook.css') }}" rel="stylesheet">
+@endpush
+
+@section('content')
+  <div class="container text-center">
     <div class="row justify-content-center">
       <div class="col-md-8">
         <div class="card">
-          <div class="card-header">{{ __('Add a Book') }}</div>
-  
+          <div class="card-header">
+            <img src="{{ asset('images/uploadBook.png') }}" alt="Upload Cloud" width="20%" height="20%"><br />
+            {{ __('Add a Book') }}
+          </div>
+
           <div class="card-body">
-            <form method="POST" action="{{ route('books.store') }}">
+            <label for="searchISBN">{{ __('Search by ISBN') }}</label>
+            <div class="input-group mb-3" name="searchISBN">
+              <div class="input-group-prepend">
+                <button class="btn btn-outline-secondary" id="searchButton" type="button">Submit</button>
+              </div>
+              <input type="text" class="form-control" aria-label="" aria-describedby="basic-addon1">
+            </div>
+
+            <label for="manual">{{ __('Or') }}</label>
+
+            <form method="POST" action="{{ route('books.store') }}" name="manual">
                 @csrf
   
                 @include('books.partial.form')

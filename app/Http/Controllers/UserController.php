@@ -20,7 +20,7 @@ class UserController extends Controller
      */
     public function index()
     {
-        return 'User index';
+        //
     }
 
     /**
@@ -63,7 +63,7 @@ class UserController extends Controller
      */
     public function edit(User $user)
     {
-        //
+        return view('users.edit', ['user' => $user]);
     }
 
     /**

@@ -1,0 +1,62 @@
+@font-face {
+  font-family: 'No Added Sugar';
+  src: url("/fonts/noaddedsugar.woff");
+}
+html,body{
+  font-family: 'Montserrat', sans-serif;
+}
+
+/* ------ landing page ------ */
+.welcome-container{
+  color: black;
+}
+.welcome-title {
+  font-family: 'No Added Sugar';
+  font-size: 4rem;
+  font-weight: bold;
+  color: white;
+}
+.welcome-text {
+  font-family: 'No Added Sugar';
+  font-size: 3rem;
+  color: white;
+}
+.photo-creds{
+  padding-bottom: 1rem;
+}
+.photo-creds a {
+  color: black;
+  text-decoration: none;
+}
+.photo-creds a:hover{
+  color: white;
+}
+/* ------ landing page end ------ */
+
+/* ------ 3 column about section layout ------ */
+.about-section{
+  padding-left: 3rem;
+  padding-right: 3rem;
+}
+.about-card{
+  margin-top: 2rem;
+  width: 25%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+}
+.about-card-title{
+  font-family: 'No Added Sugar';
+  font-weight: bold;
+  font-size: 3rem;
+  color: rgb(37, 229, 243);
+}
+.card-info{
+  text-align: center;
+  color: rgb(44, 44, 44);
+}
+/* ------ 3 column about section layout end ------ */
+
+/* ------ footer ------ */
+/* ------ footer end ------ */
