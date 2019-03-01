@@ -1,0 +1,27 @@
+html,body{
+  font-family: 'Montserrat', sans-serif;
+}
+.navbar{
+  background-color: #25e5f3;
+}
+.navbar a{
+  color: white;
+}
+.navbar a:hover{
+  color: rgb(63, 63, 63);
+}
+.navbar .dropdown-menu{
+  background-color: #25e5f3;
+  color: white;
+}
+.full-btn{
+  background-color: #8d88d5;
+  padding: 1rem;
+  color: white;
+  border-radius: 5px;
+}
+.full-btn:hover{
+  cursor: pointer;
+  text-decoration: none;
+  color: white;
+}

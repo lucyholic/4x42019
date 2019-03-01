@@ -1,0 +1,14 @@
+.book-available{
+  color: rgb(0, 230, 0);
+}
+.not-available{
+  color: rgb(252, 0, 0);
+}
+.btn-card-full{
+  background-color: #25e5f3;
+  padding: 0.5rem;
+  color: white;
+}
+.btn-card-full:hover{
+  background-color: #26c1cc;
+}

@@ -25,7 +25,7 @@ class RecordRequest extends FormRequest
     {
         return [
             'checkout_date' => ['required', 'date', 'after_or_equal:today'],
-            'return_date' => ['required', 'date',  'before_or_equal:today']
+            'return_date' => ['date',  'before_or_equal:today']
         ];
     }
 }

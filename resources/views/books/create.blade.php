@@ -4,7 +4,7 @@
 
 @push('styles')
   {{-- <link href="{{ asset('css/home.css') }}" rel="stylesheet"> --}}
-  <link href="{{ asset('css/createbook.css') }}" rel="stylesheet">
+  <link href="{{ asset('css/create.css') }}" rel="stylesheet">
 @endpush
 
 @section('content')

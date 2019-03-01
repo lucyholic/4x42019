@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Kid;
+use App\Goal;
 use App\Http\Requests\KidRequest;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
@@ -63,7 +64,8 @@ class KidController extends Controller
     public function show(Kid $kid)
     {
         $kid->load('user', 'goals');
-        return view('kids.show', ['kid' => $kid]);
+        $goals = Goal::where('kid_id', $kid->id)->get();
+        return view('kids.show', ['kid' => $kid, 'goals' => $goals]);
     }
 
     /**

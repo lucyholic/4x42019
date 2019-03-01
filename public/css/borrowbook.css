@@ -1,0 +1,36 @@
+.borrow-section{
+  margin-top: 2rem;
+}
+.owner-info{
+  color: #324b4d;
+}
+.book-status-available{
+  color: rgb(0, 216, 0);
+}
+.book-status-unavailable{
+  color: gray;
+}
+.btn-borrow-book{
+  background-color: #25e5f3;
+  border-radius: 5px;
+  padding: 1rem;
+  color: white;
+  font-weight: 600;
+}
+.btn-borrow-book:hover{
+  text-decoration: none;
+  color: white;
+  background-color: #39c2cc;
+}
+.btn-unavailable{
+  background-color: gray;
+  border-radius: 5px;
+  padding: 1rem;
+  color: white;
+  font-weight: 600;
+}
+#mapid{
+  margin-top: 1rem;
+  height: 400px;
+  width: 400px;
+}

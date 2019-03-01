@@ -13,8 +13,7 @@
     <div class="dropdown-menu" aria-labelledby="navbarDropdown">
       <a class="dropdown-item" href="{{route('books.index')}}">Manage Books</a>
       <a class="dropdown-item" href="{{route('books.create')}}">Add book</a>
-      <div class="dropdown-divider"></div>
-      <a class="dropdown-item" href="#">Find a book</a>
+      <a class="dropdown-item" href="{{route('books.search')}}">Find a book</a>
     </div>
   </li>
 </ul>

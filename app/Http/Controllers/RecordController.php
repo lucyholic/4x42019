@@ -28,7 +28,14 @@ class RecordController extends Controller
     public function create(Book $book)
     {
         $record = new Record;
-        return view('records.borrow', ['record' => $record, 'book' => $book]);
+        $owner = $book->user()->first();
+        $recentRecord = $book->records()->latest()->first();
+        return view('records.borrow', [
+            'record' => $record, 
+            'book' => $book, 
+            'owner' => $owner,
+            'recentRecord' => $recentRecord
+            ]);
     }
 
     /**
@@ -54,7 +61,7 @@ class RecordController extends Controller
     public function show(Record $record)
     {
         $record->load('user');
-        $book = $record->book();
+        $book = $record->book()->first();
 
         return view('records.show', ['record' => $record, 'book' => $book]);
     }

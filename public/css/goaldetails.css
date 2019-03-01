@@ -1,0 +1,9 @@
+.goal-description{
+  padding: 2rem;
+}
+.goal-completed{
+  color: rgb(0, 228, 0);
+}
+.goal-not-completed{
+  color: rgb(255, 72, 0);
+}

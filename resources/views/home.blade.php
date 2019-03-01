@@ -48,7 +48,7 @@
                     <img src="{{ asset('images/about-img1.jpg') }}" class="img-fluid" width="50%" height="55%">
                     <h4 class="about-card-title">Literacy</h4>
                     <div class="card-info">
-                    Lorem ipsum, dolor sit amet consectetur adipisicing elit. Maxime consequuntur quasi numquam eos quaerat, praesentium consequatur cumque enim aliquam debitis sed non! Nostrum illum officiis obcaecati quaerat aperiam praesentium distinctio molestiae quibusdam, fuga excepturi beatae quam ut alias, est necessitatibus?
+                        Using advances in modern web/mobile app design, our application promotes youth literacy by taking the idea of a library towards a modern approach that pushes families to meet new people in the process.
                     </div>
                 </section>
 
@@ -56,7 +56,7 @@
                     <img src="./images/about-img2.jpg" class="img-fluid" width="50%" height="50%">
                     <h4 class="about-card-title">Community</h4>
                     <div class="card-info">
-                    Lorem ipsum dolor sit, amet consectetur adipisicing elit. Animi repellendus fugiat repudiandae consectetur incidunt voluptate, sed blanditiis id, officia architecto, natus dolorum nesciunt quae quod commodi doloremque eaque veritatis quam. Quas quae quod quaerat vitae distinctio tempore, quisquam numquam. Provident.
+                        The core of our idea centers around the ability to put up books for exchange on the app, as well as searching for books in the community to pick up. Children’s books can be expensive to continually purchase, and this gives a variety to parents in the community. It is also a great outlet for parents to cycle out books that are below their child’s reading comprehension level for a title that is just the right level of challenging.
                     </div>
                 </section>
 
@@ -64,7 +64,7 @@
                     <img src="#">
                     <h4 class="about-card-title">Goals</h4>
                     <div class="card-info">
-                    Lorem ipsum dolor sit, amet consectetur adipisicing elit. Quae fugit neque aliquam veniam nemo fugiat suscipit ipsam, tempore doloremque? Aliquid ipsa iste perspiciatis veniam odio delectus hic nostrum, eveniet amet eum laudantium exercitationem placeat atque necessitatibus a nihil blanditiis quisquam.
+                        BetterBookShare will be a leader in our youth reading initiative. We are confident of this for many reasons such as its user/family friendly design, goal oriented approach to encouraging youth to read more often, use of in-app tips/tricks supporting literacy and its importance to thinking processes.
                     </div>
                 </section>
 

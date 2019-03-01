@@ -1,15 +1,26 @@
 {{-- view/books/show.blade.php --}}
 
 @extends('layouts.app')
+
+@push('styles')
+  <link href="{{ asset('css/home.css') }}" rel="stylesheet">
+  <link href="{{ asset('css/borrowbook.css') }}" rel="stylesheet">
+@endpush
+
+
 @section('content')
   <div class="container">
-      <div>
-          Title: {{ $book->title }}<br />
-          Author: {{ $book->author }}<br />
-          ISBN: {{ $book->ISBN }}<br />
-          Recommended Age: {{ $book->recommended_age }}<br />
-          Owned by: {{ $user->firstName }} {{ $user->lastName}}
+    <div class="borrow-section">
+      <div class="book-details">
+        <img src="../images/charlottesweb.jpg" width="400px" height="400px" class="img-fluid float-left mr-3" alt="">
+        <div class="book-info">
+          <h3>{{ $book->title }}</h3>
+          <h3>by {{ $book->author }}</h3>
+          <h5>Publisher: {{$book->publisher}}</h5>
+          <h5>for age {{ $book->recommended_age }}</h5>
         </div>
-        <a href="{{ route('books.edit', $book->id)}}" class="btn btn-primary">Edit</a>
+        <a href={{route('books.edit', $book->id)}} class="btn btn-primary">Edit</a>
+      </div>
+    </div>
   </div>
 @endsection

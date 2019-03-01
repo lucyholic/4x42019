@@ -30,6 +30,21 @@
     </div>
   </div>
 
+  <!-- Publisher -->
+  <div class="form-group row">
+      <label for="publisher" class="col-md-4 col-form-label text-md-right">{{ __('Publisher') }}</label>
+  
+      <div class="col-md-6">
+        <input id="publisher" type="text" class="form-control{{ $errors->has('publisher') ? ' is-invalid' : '' }}" name="publisher" value="{{ old('publisher', $book->publisher) }}">
+  
+          @if ($errors->has('publisher'))
+            <span class="invalid-feedback" role="alert">
+              <strong>{{ $errors->first('publisher') }}</strong>
+            </span>
+          @endif
+      </div>
+    </div>
+
   <!-- ISBN -->
   <div class="form-group row">
     <label for="ISBN" class="col-md-4 col-form-label text-md-right">{{ __('ISBN') }}</label>

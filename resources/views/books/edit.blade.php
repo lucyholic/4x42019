@@ -11,6 +11,7 @@
           <div class="card-body">
             <form method="POST" action="{{ route('books.update', $book->id) }}">
               @csrf
+              {!! method_field('put') !!}
   
             @include('books.partial.form')   
   
