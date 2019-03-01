@@ -11,6 +11,9 @@
     <title>{{ config('app.name') }}</title>
     @stack('title')
 
+    <!-- stylesheet and js file for leaflet -->
+    @stack('leaflet')
+
     <!-- Scripts -->
     <script src="{{ asset('js/app.js') }}" defer></script>
     @stack('scripts')
@@ -26,6 +29,7 @@
     <link href="{{ asset('css/styles.css') }}" rel="stylesheet">
     <link href="{{ asset('css/home.css') }}" rel="stylesheet">
     @stack('styles')
+    
     
 </head>
 

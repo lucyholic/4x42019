@@ -61,7 +61,7 @@
                 </section>
 
                 <section class="col-12 col-md-4 about-card">
-                    <img src="#">
+                    <img src="{{ asset('images/goal-image.png') }}" class="img-fluid" width="50%" height="48%">
                     <h4 class="about-card-title">Goals</h4>
                     <div class="card-info">
                         BetterBookShare will be a leader in our youth reading initiative. We are confident of this for many reasons such as its user/family friendly design, goal oriented approach to encouraging youth to read more often, use of in-app tips/tricks supporting literacy and its importance to thinking processes.

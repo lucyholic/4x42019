@@ -4,6 +4,7 @@
 
 @push('styles')
   <link href="{{ asset('css/home.css') }}" rel="stylesheet">
+  <link href="{{ asset('css/global.css') }}" rel="stylesheet">
 @endpush
 
 @section('content')
@@ -45,7 +46,7 @@
                   <div class="card-body">
                     <h5 class="card-title">Book Title</h5>
                     <p class="card-text">Author</p>
-                    <a href="{{ route('records.show') }}" class="btn">View Details</a>
+                    <a href="{{ route('records.show') }}" class="btn full-btn">View Details</a>
                     {{-- {{ route('records.show', $book->records()->latest()->first()->id) }} --}}
                   </div>
                   <div class="card-footer text-muted">
@@ -81,7 +82,7 @@
                     <div class="card-body">
                       <h5 class="card-title">Book Title</h5>
                       <p class="card-text">Author</p>
-                      <a href="{{ route('records.show') }}" class="btn">View Details</a>
+                      <a href="{{ route('records.show') }}" class="btn full-btn">View Details</a>
                     </div>
                     <div class="card-footer text-muted">
                       Lent out to: <span><a href="">Name</a></span>
@@ -117,7 +118,7 @@
                   <div class="card-body">
                     <h5 class="card-title">Book Title</h5>
                     <p class="card-text">Author</p>
-                    <a href="{{ route('books.edit', $book->id) }}" class="btn">View Details</a>
+                    <a href="{{ route('books.edit', $book->id) }}" class="btn full-btn">Edit Book</a>
                   </div>
                 </div>
                 @endforeach

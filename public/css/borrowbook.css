@@ -22,13 +22,6 @@
   color: white;
   background-color: #39c2cc;
 }
-.btn-unavailable{
-  background-color: gray;
-  border-radius: 5px;
-  padding: 1rem;
-  color: white;
-  font-weight: 600;
-}
 #mapid{
   margin-top: 1rem;
   height: 400px;

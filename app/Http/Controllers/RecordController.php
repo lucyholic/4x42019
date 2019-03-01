@@ -9,6 +9,11 @@ use App\Http\Requests\RecordRequest;
 
 class RecordController extends Controller
 {
+    public function __construct()
+    {
+        $this->middleware('auth');
+    }
+
     /**
      * Display a listing of the resource.
      *

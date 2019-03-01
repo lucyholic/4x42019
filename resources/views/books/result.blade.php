@@ -17,12 +17,12 @@
     
     <div class="row">
       <div class="col-sm-6 col-m-4 col-lg-3">
-        <div class="card mb-2 text-center">
+        <div class="card mb-2 text-center" style='width: 11rem'>
           <img src="../images/charlottesweb.jpg" alt="" class="card-img-top">
           <div class="card-body">
             <h5 class="card-title">Book Title</h5>
             <p class="card-text">Author</p>
-            <a href="#" class="btn btn-card-full">View details</a>
+            <a href="{{ url('records/create/1') }}" class="btn btn-card-full">View details</a>
           </div>
           <div class="card-footer">
             <!-- Change class="not-available" for lent out books -->

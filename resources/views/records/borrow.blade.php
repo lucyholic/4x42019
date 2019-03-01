@@ -23,7 +23,7 @@
           <div class="book-info">
             <h3>{{ $book->title }}</h3>
             <h3>by {{ $book->author }}</h3>
-            <h5>Publisher: {{$book->publisher}}</h5>
+            <h5>Publisher: {{ $book->publisher }}</h5>
             <h5>for age {{ $book->recommended_age }}</h5>
           </div>
           <div class="owner-info">
@@ -31,20 +31,27 @@
           </div>
           <div class="book-status">
             <div class="book-status-text">
-              Book Status:              
-              @if (empty($recentRecord->return_date) || empty($recentRecord))
+              Book Status:
+              {{-- @if (empty($recentRecord->return_date) || empty($recentRecord))
                 <span class="book-status-unavailable">Not Available</span>
-                <button class="btn-unavailable">Borrow</button>
+                <button class="btn" disabled>Borrow</button>
               @else
                 <span class="book-status-available">Available</span>
-
                 <form method="POST" action="{{ route('records.store') }}">
                     @csrf
                     <input type="hidden" name="book_id" id="book_id" value={{$book->id}}>
                     <input type="date" class="form-control col-md-2 mt-4" name="checkout_date" id="checkout_date">
                     <button type="submit" class="btn-borrow-book btn-available">Borrow</button>
                 </form>
-              @endif            
+              @endif --}}
+              <span class="book-status-available">Available</span>
+              <form method="POST" action="{{ route('records.store') }}">
+                  @csrf
+                  <input type="hidden" name="book_id" id="book_id" value={{$book->id}}>
+                  <input type="date" class="form-control col-md-2 mt-4" name="checkout_date" id="checkout_date">
+                  <button type="submit" class="btn-borrow-book" style="border:none">Borrow</button>
+              </form>
+
             </div>
           </div>
         </div>
@@ -57,12 +64,16 @@
 
 @push('scripts_footer')
   <script>
-    var map = L.map('mapid').setView([43.452969, -80.495064], 13);
+    window.onload = () => {
+      var map = L.map('mapid').setView([43.452969, -80.495064], 13);
     L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
     attribution: '&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors'
     }).addTo(map);
 
     var marker = L.marker([43.452969, -80.495064]).addTo(map);
-    marker.bindPopup("<b>Owner Address</b>").openPopup();
+    marker.bindPopup("<b>Nearest Community Centre</b><br /><h6>Kitchener Community Centre <br />123 King St</h6>").openPopup();
+  }
+
+    
   </script>
 @endpush

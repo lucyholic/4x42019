@@ -10,32 +10,35 @@
 @section('content')
 
 <div class="container">
-  <div class="kid-details col-md-12">
-      <h3 class="kids-name">{{ $kid->firstName }}'s Goal</h3>
-      <hr />
-  </div>
-      
-  <div class="goal-details">
-    <h3 class="goal-title">{{ $goal->title }}</h4>
-    <div class="goal-status">
-      <p>Goal Status:
-        @if($goal->is_completed)
-          <span class="lead goal-completed">Completed</span></p>
-        @else
-          <span class="lead goal-completed">Still Working on it!</span></p>
-        @endif
+    <div class="row mt-2 text-center">
+      <div class="kid-details col-md-12">
+          <h3 class="kids-name">{{ $kid->firstName }}'s Goal</h3>
+          <hr />
+      </div>
+          
+      <div class="goal-details text-center">
+        <h3 class="goal-title">{{ $goal->title }}</h4>
+        <div class="goal-status">
+          <p>Goal Status:
+            @if($goal->is_completed)
+              <span class="lead goal-completed">Completed</span></p>
+            @else
+              <span class="lead goal-completed">Still Working on it!</span></p>
+            @endif
+        </div>
+        <hr />
+        <p class="goal-description">{{ $goal->description }}</p>
+          <div class="goal-date-section text-inline">
+            <p class="start-date">Start Date: {{ $goal->start_date}}</p>
+            <p class="end-date">End Date: {{ $goal->end_date }}</p>
+          </div>
+          <div class="goal-btns">
+            <a href="#" class="btn full-btn mb-2" style="background-color: rgb(0, 223, 0);">Mark goal as completed</a>
+            <a href="{{ route('kids.show', $kid->id) }}" class="btn full-btn mb-2">Return to Kid details</a>
+          </div>
+        </div>
+      </div>
     </div>
-    <hr />
-    <p class="goal-description">{{ $goal->description }}</p>
-      <div class="goal-date-section text-inline">
-      <p class="start-date">Start Date: {{ $goal->start_date}}</p>
-      <p class="end-date">End Date: {{ $goal->end_date }}</p>
-      </div>
-      <div class="goal-btns">
-        <a href="#" class="btn full-btn mb-2" style="background-color: rgb(0, 223, 0);">Mark goal as completed</a>
-        <a href="{{ route('kids.show', $kid->id) }}" class="btn full-btn mb-2">Return to Kid details</a>
-      </div>
-  </div>
 </div>
 
 @endsection
