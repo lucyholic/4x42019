@@ -36,18 +36,23 @@
         <div class="card-body">
           <div class="book-collection">
             <div class="borrowed-books-collection">
+              @foreach($books as $book)
+                {{-- Show not returned book only
+                  @if($book->records()->latest()->first()->return_date == null) --}}
               <div class="card text-center" style="width: 13rem;">
                 <img class="card-img-top img-fluid" src="../images/charlottesweb.jpg" width="50"
                   height="175" alt="Card image cap">
                   <div class="card-body">
                     <h5 class="card-title">Book Title</h5>
                     <p class="card-text">Author</p>
-                    <a href="#" class="btn">View Details</a>
+                    <a href="{{ route('records.show') }}" class="btn">View Details</a>
+                    {{-- {{ route('records.show', $book->records()->latest()->first()->id) }} --}}
                   </div>
                   <div class="card-footer text-muted">
                     Checkout date
                   </div>
                 </div>
+              @endforeach
               </div>
             </div>
           </div>
@@ -67,6 +72,8 @@
         <div id="lent-out-books" class="collapse" aria-labelledby="lent-out-books-heading" data-parent="#accordion">
           <div class="card-body">
             <div class="lent-out-books book-collection">
+              @foreach($books as $book)
+
               <div class="lent-out-books">
                 <div class="card text-center" style="width: 13rem;">
                   <img class="card-img-top img-fluid" src="../images/charlottesweb.jpg" width="100"
@@ -74,13 +81,16 @@
                     <div class="card-body">
                       <h5 class="card-title">Book Title</h5>
                       <p class="card-text">Author</p>
-                      <a href="#" class="btn">View Details</a>
+                      <a href="{{ route('records.show') }}" class="btn">View Details</a>
                     </div>
                     <div class="card-footer text-muted">
                       Lent out to: <span><a href="">Name</a></span>
                     </div>
                 </div>
               </div>
+
+              @endforeach
+
             </div>
           </div>
         </div>
@@ -100,15 +110,17 @@
           <div class="card-body">
             <div class="user-library">
               <div class="user-library-collection">
+                @foreach($books as $book)
                 <div class="card text-center" style="width: 13rem;">
                   <img class="card-img-top img-fluid" src="../images/charlottesweb.jpg" width="100"
                     height="350" alt="Card image cap">
                   <div class="card-body">
                     <h5 class="card-title">Book Title</h5>
                     <p class="card-text">Author</p>
-                    <a href="#" class="btn">View Details</a>
+                    <a href="{{ route('books.edit', $book->id) }}" class="btn">View Details</a>
                   </div>
                 </div>
+                @endforeach
               </div>
             </div>
           </div>

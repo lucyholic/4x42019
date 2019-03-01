@@ -3,7 +3,7 @@
     <a class="nav-link" href="{{ route('kids.index') }}">Manage Family</a>
   </li>
   <li class="nav-item">
-    <a class="nav-link" href="{{route('kids.index')}}">Childrens Goals</a>
+    <a class="nav-link" href="{{route('goals.index')}}">Childrens Goals</a>
   </li>
   <li class="nav-item dropdown">
     <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown"

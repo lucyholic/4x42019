@@ -52,7 +52,7 @@
         <tbody>
           @foreach ($goals as $goal)
             <tr>
-              <td>{{ $goal->title }}</td>
+              <td><a href="{{ route('goals.show', $goal->id) }}">{{ $goal->title }}</a></td>
               <td>{{ $goal->start_date}}</td>
               @if ($goal->completed)
                 <td><input type="checkbox" id="complete" checked disabled></td>

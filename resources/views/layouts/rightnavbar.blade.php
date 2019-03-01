@@ -24,6 +24,13 @@
 
         {{-- Go to profile --}}
         <div class="dropdown-menu dropdown-menu-right" aria-labelledby="navbarDropdown">
+          
+          <div>
+            <a class="dropdown-item" href="{{ route('records.index') }}">
+              {{ __('History') }}
+            </a>
+          </div>
+
           <div>
           <a class="dropdown-item" href="{{ route('users.show', Auth::id()) }}">
               {{ __('Profile') }}

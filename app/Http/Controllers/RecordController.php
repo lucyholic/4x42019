@@ -16,7 +16,7 @@ class RecordController extends Controller
      */
     public function index()
     {
-        return abort(404);
+        return view('records.index');
     }
 
     /**
@@ -58,12 +58,16 @@ class RecordController extends Controller
      * @param  \App\Record  $record
      * @return \Illuminate\Http\Response
      */
-    public function show(Record $record)
-    {
-        $record->load('user');
-        $book = $record->book()->first();
+    // public function show(Record $record)
+    // {
+    //     $record->load('user');
+    //     $book = $record->book()->first();
 
-        return view('records.show', ['record' => $record, 'book' => $book]);
+    //     return view('records.show', ['record' => $record, 'book' => $book]);
+    // }
+    public function show()
+    {
+        return view('records.show');
     }
 
     /**

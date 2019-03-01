@@ -17,7 +17,8 @@ class GoalController extends Controller
      */
     public function index()
     {
-        return abort(404);
+        $goals = Goal::latest()->paginate(5);
+        return view('goals.index', ['goals' => $goals]);
     }
 
     /**
