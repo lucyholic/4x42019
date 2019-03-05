@@ -64,8 +64,19 @@ class KidController extends Controller
     public function show(Kid $kid)
     {
         $kid->load('user', 'goals');
-        $goals = Goal::where('kid_id', $kid->id)->get();
-        return view('kids.show', ['kid' => $kid, 'goals' => $goals]);
+
+        if ($kid->isMyKid())
+        {
+            $goals = Goal::where('kid_id', $kid->id)->get();
+            return view('kids.show', ['kid' => $kid, 'goals' => $goals]);
+        }
+
+        else
+        {
+            return \abort(404);
+        }
+
+        
     }
 
     /**

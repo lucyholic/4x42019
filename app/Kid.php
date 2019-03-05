@@ -3,6 +3,7 @@
 namespace App;
 
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Support\Facades\Auth;
 
 class Kid extends Model
 {
@@ -14,15 +15,18 @@ class Kid extends Model
     ];
 
     public function age($dob) {
-        // $now = date('Y-m-d');
-        
-        // $difference = $now - $dob;
-        
-        // $age = $difference->y;
-        
-        // return $age;
+        $now_array = explode('-', date('Y-m-d'));
+        $dob_array = explode('-', $dob);
 
-        return 11;
+        $age = (int)$now_array[0] - (int)$dob_array[0];
+
+        if ((int)$now_array[1] >= (int)$dob_array[1] &&
+            (int)$now_array[2] >= (int)$dob_array[2])
+            return $age;
+
+        else
+            return $age-1;
+
     }
 
     public function user() {
@@ -31,5 +35,9 @@ class Kid extends Model
 
     public function goals() {
         return $this->hasMany(Goal::class);
+    }
+
+    public function isMyKid() {
+        return $this->user_id == Auth::id();
     }
 }
