@@ -11,9 +11,6 @@
     <title>{{ config('app.name') }}</title>
     @stack('title')
 
-    <!-- stylesheet and js file for leaflet -->
-    @stack('leaflet')
-
     <!-- Scripts -->
     <script src="{{ asset('js/app.js') }}" defer></script>
     @stack('scripts')
@@ -30,7 +27,6 @@
     <link href="{{ asset('css/home.css') }}" rel="stylesheet">
     @stack('styles')
     
-    
 </head>
 
 <body>
@@ -45,8 +41,12 @@
                 </button>
 
                 <div class="collapse navbar-collapse" id="navbarSupportedContent">
-                    @include('layouts.leftnavbar')
-                    @include('layouts.rightnavbar')
+                    @guest
+                        @include('layouts.rightnavbar')
+                    @else
+                        @include('layouts.leftnavbar')
+                        @include('layouts.rightnavbar')
+                    @endguest
                 </div>
             </div>
         </nav>

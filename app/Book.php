@@ -21,4 +21,21 @@ class Book extends Model
     public function records() {
         return $this->hasMany(Record::class);
     }
+
+    public function isAvailable()
+    {
+        $record = $this->records()->latest()->first();
+
+        if($record == null || $record->return_date == null)
+            return true;
+        else
+            return false;
+    }
+
+    public function lentOutTo()
+    {
+        $record = $this->records()->latest()->first();
+
+        return $record->user();
+    }
 }

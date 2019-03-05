@@ -20,9 +20,23 @@
     </head>
     <body>
         <nav class="navbar navbar-expand-md navbar-light navbar-laravel">
-        <div class="collapse navbar-collapse">
-            @include('layouts.rightnavbar')
-        </div>
+            <div class="container">
+                <a class="navbar-brand" href="{{ route('home') }}">
+                    {{ config('app.name') }}
+                </a>
+                <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="{{ __('Toggle navigation') }}">
+                    <span class="navbar-toggler-icon"></span>
+                </button>
+
+                <div class="collapse navbar-collapse" id="navbarSupportedContent">
+                    @guest
+                        @include('layouts.rightnavbar')
+                    @else
+                        @include('layouts.leftnavbar')
+                        @include('layouts.rightnavbar')
+                    @endguest
+                </div>
+            </div>
         </nav>
 
         <div class='container'>

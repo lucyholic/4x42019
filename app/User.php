@@ -55,4 +55,28 @@ class User extends Authenticatable
     public function records() {
         return $this->hasMany(Record::class);
     }
+
+    public function borrowingHistory() {
+        $books = DB::table('books')
+            ->join('users', 'books.user_id', '=', 'users.id')
+            ->join('records', 'books.id', '=', 'records.book_id')
+            ->select('books.*')
+            ->orderBy('records.id', 'DESC')
+            ->where('records.user_id', Auth::id())
+            ->get();
+
+        return $books;
+    }
+
+    public function lentOutHistory() {
+        $books = DB::table('books')
+            ->join('users', 'books.user_id', '=', 'users.id')
+            ->join('records', 'books.id', '=', 'records.book_id')
+            ->select('books.*')
+            ->orderBy('records.id', 'DESC')
+            ->where('users.id', Auth::id())
+            ->get();
+
+        return $books;
+    }
 }

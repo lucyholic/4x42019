@@ -3,14 +3,13 @@
 @extends('layouts.app')
 
 @push('styles')
-  {{-- <link href="{{ asset('css/home.css') }}" rel="stylesheet"> --}}
   <link href="{{ asset('css/create.css') }}" rel="stylesheet">
 @endpush
 
 @section('content')
   <div class="container text-center">
     <h1 class="familyHeading">My Family</h1>
-    <p style="font-family:'Montserrat', sans-serif";>Click on a kid's name for more detail</p>
+    <p style="font-family:'Montserrat', sans-serif;">Click on a kid's name for more detail</p>
     <img src="{{ asset('images/familyCartoon.jpeg') }}" alt="Cartoon Family">
     <br /><a href={{ route('kids.create') }} class="btn btn-primary pull-right">Add Kid</a>
     

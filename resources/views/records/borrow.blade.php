@@ -27,30 +27,23 @@
             <h5>for age {{ $book->recommended_age }}</h5>
           </div>
           <div class="owner-info">
-            <h4>Owned by: {{ $owner->firstName }} {{ $owner->lastName}}</h4>
+            <h4>Owned by: {{ $owner->firstName }} {{ $owner->lastName }}</h4>
           </div>
           <div class="book-status">
             <div class="book-status-text">
               Book Status:
-              {{-- @if (empty($recentRecord->return_date) || empty($recentRecord))
-                <span class="book-status-unavailable">Not Available</span>
-                <button class="btn" disabled>Borrow</button>
-              @else
+              @if ($book->isAvailable())
                 <span class="book-status-available">Available</span>
                 <form method="POST" action="{{ route('records.store') }}">
-                    @csrf
-                    <input type="hidden" name="book_id" id="book_id" value={{$book->id}}>
-                    <input type="date" class="form-control col-md-2 mt-4" name="checkout_date" id="checkout_date">
-                    <button type="submit" class="btn-borrow-book btn-available">Borrow</button>
-                </form>
-              @endif --}}
-              <span class="book-status-available">Available</span>
-              <form method="POST" action="{{ route('records.store') }}">
                   @csrf
                   <input type="hidden" name="book_id" id="book_id" value={{$book->id}}>
                   <input type="date" class="form-control col-md-2 mt-4" name="checkout_date" id="checkout_date">
-                  <button type="submit" class="btn-borrow-book" style="border:none">Borrow</button>
-              </form>
+                  <button type="submit" class="btn-borrow-book btn-available">Borrow</button>
+                </form>
+              @else
+                <span class="book-status-unavailable">Not Available</span>
+                <button class="btn" disabled>Borrow</button>
+              @endif
 
             </div>
           </div>

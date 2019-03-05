@@ -24,6 +24,7 @@ class KidController extends Controller
     {
         $user_id = Auth::id();
         $kids = Kid::where('user_id', $user_id)
+            ->orderBy('DOB')
             ->get();
         return view('kids.index', ['kids' => $kids]);
     }

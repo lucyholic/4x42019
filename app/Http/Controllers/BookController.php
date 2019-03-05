@@ -22,12 +22,14 @@ class BookController extends Controller
     public function index()
     {
         $user = User::find(Auth::id());
+        $books = Book::all();
 
         // my books
         $mybooks = $user->books();
 
-        // all books
-        $books = Book::paginate(5);
+        // borrowing books
+        $borrowingBooks = DB::table('books')
+            ->
         
 
         return view('books.index', [
