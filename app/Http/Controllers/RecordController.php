@@ -4,8 +4,10 @@ namespace App\Http\Controllers;
 
 use App\Record;
 use App\Book;
+use App\User;
 use Illuminate\Http\Request;
 use App\Http\Requests\RecordRequest;
+use Illuminate\Support\Facades\Auth;
 
 class RecordController extends Controller
 {
@@ -21,7 +23,12 @@ class RecordController extends Controller
      */
     public function index()
     {
-        return view('records.index');
+        $user = User::where('id', Auth::id())->first();
+        $borrowingHistory = $user->borrowingHistory()->get();
+        $lentOutHistory = $user->lentOutHistory()->get();
+
+        return view('records.index', ['borrowingHistory' => $borrowingHistory,
+            'lentOutHistory' => $lentOutHistory]);
     }
 
     /**
@@ -63,16 +70,12 @@ class RecordController extends Controller
      * @param  \App\Record  $record
      * @return \Illuminate\Http\Response
      */
-    // public function show(Record $record)
-    // {
-    //     $record->load('user');
-    //     $book = $record->book()->first();
-
-    //     return view('records.show', ['record' => $record, 'book' => $book]);
-    // }
-    public function show()
+    public function show(Record $record)
     {
-        return view('records.show');
+        $record->load('user');
+        $book = $record->book()->first();
+
+        return view('records.show', ['record' => $record, 'book' => $book]);
     }
 
     /**
@@ -95,9 +98,17 @@ class RecordController extends Controller
      */
     public function update(Request $request, Record $record)
     {
-        $record->update($request->all());
-        $book = $record->book();
-        return view('records.show', ['record' => $record, 'book' => $book]);
+        $validate = $request->validate([
+            'return_date' => ['required', 'date']
+        ]);
+
+        $record->update([
+            'return_date', $validate['return_date']
+        ]);
+
+        // flash('Book is returned!', 'success');
+
+        return redirect(route('records.show', $record->id));
     }
 
     /**

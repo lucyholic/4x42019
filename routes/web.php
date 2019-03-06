@@ -24,6 +24,5 @@ Route::get('books/result', 'BookController@result')->name('books.result');
 Route::resource('books', 'BookController');
 Route::resource('kids', 'KidController');
 Route::resource('goals', 'GoalController');
-Route::get('records/show', 'RecordController@show')->name('records.show');
 Route::get('/records/create/{book}', 'RecordController@create')->name('records.create');
-Route::resource('records', 'RecordController')->except(['show']);
+Route::resource('records', 'RecordController');

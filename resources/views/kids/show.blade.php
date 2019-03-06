@@ -54,7 +54,7 @@
             <tr>
               <td><a href="{{ route('goals.show', $goal->id) }}">{{ $goal->title }}</a></td>
               <td>{{ $goal->start_date}}</td>
-              @if ($goal->completed)
+              @if ($goal->isCompleted)
                 <td><input type="checkbox" id="complete" checked disabled></td>
               @else
               <td><input type="checkbox" id="complete" disabled></td>

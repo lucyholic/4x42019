@@ -47,7 +47,7 @@
         <div class="card-body">
           @foreach ($books as $book)
           <div class="card text-center" style="width: 13rem;">
-            <img class="card-img-top img-fluid" src="{{asset('images/charlottesweb.jpg')}}" width="100"
+            <img class="card-img-top img-fluid" src="{{asset('storage/'.$book->cover)}}" width="100"
               height="350" alt="Card image cap">
               <div class="card-body">
                 <h5 class="card-title">{{$book->title}}</h5>

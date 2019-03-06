@@ -34,10 +34,10 @@
             <td>{{ $goal->kid()->first()->firstName}}</td>
             <td><a href="{{ route('goals.show', $goal->id) }}">{{ $goal->title }}</a></td>
             <td>{{ $goal->start_date}}</td>
-            @if ($goal->completed)
-              <td><input type="checkbox" id="complete" checked disabled></td>
+            @if ($goal->isCompleted)
+              <td><input type="checkbox" id="complete" disabled checked="checked"></td>
             @else
-            <td><input type="checkbox" id="complete" disabled></td>
+              <td><input type="checkbox" id="complete" disabled></td>
             @endif
           </tr>
         @endforeach

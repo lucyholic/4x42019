@@ -41,3 +41,7 @@ html,body{
   margin-bottom: 10px;
   clear: both;
 }
+
+img {
+  display: inline-block;
+}

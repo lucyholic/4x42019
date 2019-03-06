@@ -27,12 +27,12 @@ class BookController extends Controller
         $mybooks = $user->books()->get();
 
         // borrowing books
-        $borrowingBooks = $user->borrowingHistory()
+        $borrowingBooks = $user->borrowingBooks()
             ->where('records.return_date', null)
             ->get();
         
         // lent out books
-        $lentOutBooks = $user->lentOutHistory()
+        $lentOutBooks = $user->lentOutBooks()
             ->where('records.return_date', null)
             ->get();
         
@@ -144,7 +144,7 @@ class BookController extends Controller
      */
     public function search()
     {
-        $books = Book::paginate(5);
+        $books = Book::paginate(10);
         return view('books.search', ['books' => $books]);
     }
 
@@ -155,6 +155,7 @@ class BookController extends Controller
      */
     public function result()
     {
-        return view('books.result');
+        $books = Book::paginate(10);
+        return view('books.result', ['books' => $books]);
     }
 }

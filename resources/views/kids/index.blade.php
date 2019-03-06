@@ -29,7 +29,7 @@
           <td><a href={{ route('kids.show', $kid->id) }}>{{ $kid->firstName }}</a></td>
           <td>{{ $kid->lastName }}</td>
           <td>{{ $kid->age($kid->DOB) }}</td>
-          <td>(Goal name)</td>
+          <td>{{ $kid->goals()->latest()->first()->title}}</td>
         </tr>
 
         @endforeach

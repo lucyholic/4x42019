@@ -59,25 +59,44 @@ class User extends Authenticatable
         return $this->hasMany(Record::class);
     }
 
-    public function borrowingHistory() {
+    public function borrowingBooks() {
         $books = DB::table('books')
             ->join('users', 'books.user_id', '=', 'users.id')
             ->join('records', 'books.id', '=', 'records.book_id')
-            ->select('books.*', 'records.return_date')
+            ->select('books.*', 'records.checkout_date as checkout_date', 'records.return_date as return_date')
             ->orderBy('records.id', 'DESC')
             ->where('records.user_id', Auth::id());
 
         return $books;
     }
 
-    public function lentOutHistory() {
+    public function lentOutBooks() {
         $books = DB::table('books')
             ->join('users', 'books.user_id', '=', 'users.id')
             ->join('records', 'books.id', '=', 'records.book_id')
-            ->select('books.*', 'users.firstName as firstName', 'users.lastName as lastName', 'records.return_date')
+            ->select('books.*', 'users.firstName as firstName', 'users.lastName as lastName', 
+                'records.checkout_date as checkout_date', 'records.return_date as return_date')
             ->orderBy('records.id', 'DESC')
             ->where('users.id', Auth::id());
 
         return $books;
+    }
+
+    public function borrowingHistory() {
+        $records = Record::join('users', 'records.user_id', '=', 'users.id')
+            ->join('books', 'records.book_id', '=', 'books.id')
+            ->orderBy('records.id', 'DESC')
+            ->where('records.user_id', Auth::id());
+
+        return $records;
+    }
+
+    public function lentOutHistory() {
+        $records = Record::join('users', 'records.user_id', '=', 'users.id')
+            ->join('books', 'records.book_id', '=', 'books.id')
+            ->orderBy('records.id', 'DESC')
+            ->where('users.id', Auth::id());
+
+        return $records;
     }
 }

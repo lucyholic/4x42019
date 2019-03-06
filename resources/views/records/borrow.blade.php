@@ -19,7 +19,7 @@
   <div class="container">
     <div class="borrow-section">
         <div class="book-details">
-          <img src="{{asset('images/charlottesweb.jpg')}}" width="400px" height="400px" class="img-fluid float-left mr-3" alt="">
+          <img src="{{asset('storage/'.$book->cover)}}" width="400px" height="400px" class="img-fluid float-left mr-3" alt="">
           <div class="book-info">
             <h3>{{ $book->title }}</h3>
             <h3>by {{ $book->author }}</h3>

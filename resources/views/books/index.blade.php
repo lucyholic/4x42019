@@ -33,18 +33,16 @@
           <div class="book-collection">
             <div class="borrowed-books-collection">
               @foreach($borrowingBooks as $book)
-                {{-- Show not returned book only
-                  @if($book->records()->latest()->first()->return_date == null) --}}
               <div class="card text-center" style="width: 13rem;">
                 <img class="card-img-top img-fluid" src="{{ asset('storage/'.$book->cover) }}" width="50"
                   height="175" alt="Card image cap">
                   <div class="card-body">
                     <h5 class="card-title">{{ $book->title }}</h5>
                     <p class="card-text">{{ $book->author }}</p>
-                    <a href="{{ route('records.show') }}" class="btn full-btn">View Details</a>
+                    <a href="{{ route('records.show', $book->id) }}" class="btn full-btn">View Details</a>
                   </div>
                   <div class="card-footer text-muted">
-                    Checkout date
+                    Checked out<br />{{ $book->checkout_date }}
                   </div>
                 </div>
               @endforeach

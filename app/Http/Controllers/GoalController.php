@@ -79,14 +79,21 @@ class GoalController extends Controller
     /**
      * Update the specified resource in storage.
      *
-     * @param  GoalRequest  $request
+     * @param  \Illuminate\Http\Request  $request
      * @param  \App\Goal  $goal
      * @return \Illuminate\Http\Response
      */
-    public function update(GoalRequest $request, Goal $goal)
+    public function update(Request $request, Goal $goal)
     {
-        $goal->update($request->all());
-        return redirect(route('goals.show', $goal->id));
+        $kid = $goal->kid()->first();
+
+        $goal->update([
+            'isCompleted' => true
+        ]);
+
+        // flash('Book is returned!', 'success');
+
+        return redirect(route('kids.show', $kid->id));
     }
 
     /**
