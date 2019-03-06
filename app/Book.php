@@ -12,6 +12,7 @@ class Book extends Model
         'publisher',
         'ISBN',
         'recommended_age',
+        'cover'
     ];
 
     public function user() {

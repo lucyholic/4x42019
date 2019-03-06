@@ -28,7 +28,8 @@ class BookRequest extends FormRequest
             'author' => ['required', 'string'],
             'recommended_age' => ['required', 'numeric'],
             'ISBN' => ['required'],
-            'publisher' => ['required', 'string']
+            'publisher' => ['required', 'string'],
+            'cover' => ['mimes:jpeg, jpg, png, gif', 'required', 'max:10000']
         ];
     }
 }

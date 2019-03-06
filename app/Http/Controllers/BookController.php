@@ -22,18 +22,24 @@ class BookController extends Controller
     public function index()
     {
         $user = User::find(Auth::id());
-        $books = Book::all();
 
         // my books
-        $mybooks = $user->books();
+        $mybooks = $user->books()->get();
 
         // borrowing books
-        $borrowingBooks = DB::table('books')
-            ->
+        $borrowingBooks = $user->borrowingHistory()
+            ->where('records.return_date', null)
+            ->get();
+        
+        // lent out books
+        $lentOutBooks = $user->lentOutHistory()
+            ->where('records.return_date', null)
+            ->get();
         
 
         return view('books.index', [
-                'books' => $books,
+                'borrowingBooks' => $borrowingBooks,
+                'lentOutBooks' => $lentOutBooks,
                 'mybooks' => $mybooks
             ]);
     }
@@ -52,13 +58,31 @@ class BookController extends Controller
     /**
      * Store a newly created resource in storage.
      *
-     * @param  BookRequest  $request
+     * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(BookRequest $request)
+    public function store(Request $request)
     {
+        $validate = $request->validate([
+            'title' => ['required', 'string'],
+            'author' => ['required', 'string'],
+            'recommended_age' => ['required', 'numeric'],
+            'ISBN' => ['required'],
+            'publisher' => ['required', 'string'],
+            'cover' => ['mimes:jpeg, jpg, png, gif', 'required', 'max:10000']
+        ]);
+        $path = $request->file('cover')->store('public/files');
+        $path = substr($path, 7);
+
         $user = $request->user();
-        $book = $user->books()->create($request->all());
+        $book = $user->books()->create([
+            'title' => $validate['title'],
+            'author' => $validate['author'],
+            'recommended_age' => $validate['recommended_age'],
+            'ISBN' => $validate['ISBN'],
+            'publisher' => $validate['publisher'],
+            'cover' => $path
+        ]);
 
         // flash('A book added!', 'success');
 

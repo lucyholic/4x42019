@@ -5,6 +5,9 @@ namespace App;
 use Illuminate\Notifications\Notifiable;
 use Illuminate\Contracts\Auth\MustVerifyEmail;
 use Illuminate\Foundation\Auth\User as Authenticatable;
+use Illuminate\Support\Facades\DB;
+use Illuminate\Support\Facades\Auth;
+
 
 class User extends Authenticatable
 {
@@ -60,10 +63,9 @@ class User extends Authenticatable
         $books = DB::table('books')
             ->join('users', 'books.user_id', '=', 'users.id')
             ->join('records', 'books.id', '=', 'records.book_id')
-            ->select('books.*')
+            ->select('books.*', 'records.return_date')
             ->orderBy('records.id', 'DESC')
-            ->where('records.user_id', Auth::id())
-            ->get();
+            ->where('records.user_id', Auth::id());
 
         return $books;
     }
@@ -72,10 +74,9 @@ class User extends Authenticatable
         $books = DB::table('books')
             ->join('users', 'books.user_id', '=', 'users.id')
             ->join('records', 'books.id', '=', 'records.book_id')
-            ->select('books.*')
+            ->select('books.*', 'users.firstName as firstName', 'users.lastName as lastName', 'records.return_date')
             ->orderBy('records.id', 'DESC')
-            ->where('users.id', Auth::id())
-            ->get();
+            ->where('users.id', Auth::id());
 
         return $books;
     }

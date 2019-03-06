@@ -8,29 +8,32 @@
 @endpush
 
 @section('content')
-  <div class="container text-center">
+  <div class="container">
     <div class="row justify-content-center">
       <div class="col-md-8">
         <div class="card">
           <div class="card-header">
-            <img src="{{ asset('images/uploadBook.png') }}" alt="Upload Cloud" width="20%" height="20%"><br />
             {{ __('Add a Book') }}
           </div>
 
           <div class="card-body">
-            <label for="searchISBN">{{ __('Search by ISBN') }}</label>
-            <div class="input-group mb-3" name="searchISBN">
-              <div class="input-group-prepend">
-                <button class="btn btn-outline-secondary" id="searchButton" type="button">Submit</button>
-              </div>
-              <input type="text" class="form-control" aria-label="" aria-describedby="basic-addon1">
-            </div>
-
-            <label for="manual">{{ __('Or') }}</label>
-
-            <form method="POST" action="{{ route('books.store') }}" name="manual">
+            <form method="POST" action="{{ route('books.store') }}" enctype="multipart/form-data" name="frmBookCreate">
                 @csrf
-  
+
+                <div class="form-group row">
+                  <label for="cover" class="col-md-4 col-form-label text-md-right">{{ __('Book Cover') }}</label>
+              
+                  <div class="col-md-6">
+                    <input id="cover" type="file" class="form-control{{ $errors->has('cover') ? ' is-invalid' : '' }}" name="cover" value="{{ old('cover', $book->cover) }}">
+              
+                      @if ($errors->has('cover'))
+                        <span class="invalid-feedback" role="alert">
+                          <strong>{{ $errors->first('cover') }}</strong>
+                        </span>
+                      @endif
+                  </div>
+                </div>
+
                 @include('books.partial.form')
   
                 <!-- Buttons -->

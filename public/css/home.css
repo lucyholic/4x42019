@@ -39,4 +39,5 @@ html,body{
 }
 .book-collection{
   margin-bottom: 10px;
+  clear: both;
 }
