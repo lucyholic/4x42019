@@ -103,12 +103,12 @@ class RecordController extends Controller
         ]);
 
         $record->update([
-            'return_date', $validate['return_date']
+            'return_date' => $validate['return_date']
         ]);
 
         // flash('Book is returned!', 'success');
 
-        return redirect(route('records.show', $record->id));
+        return redirect(route('records.index'));
     }
 
     /**
